@@ -1,35 +1,35 @@
+import { useState } from 'react';
+import Header from 'components/Header';
 import Grid from 'components/Grid';
 import useDirectionals from 'hooks/useDirectionals';
-import { useSelector, useDispatch } from 'hooks/redux';
-import { slide, combine, undo, selectIsGameOver } from 'store/game/gameSlice';
+import { useDispatch } from 'hooks/redux';
+import { slide, combine } from 'store/game/gameSlice';
 import Game from 'constants/game';
 
 function App() {
-    const score = useSelector((state) => state.game.score);
-    const isGameOver = useSelector((state) => selectIsGameOver(state.game));
+    const [sliding, setSliding] = useState(false);
+    //const isGameOver = useSelector((state) => selectIsGameOver(state.game));
     const dispatch = useDispatch();
 
-    // TODO: implement a queue
     useDirectionals((direction) => {
-        dispatch(slide(direction));
+        if (!sliding) {
+            setSliding(true);
+            dispatch(slide(direction));
 
-        setTimeout(() => {
-            dispatch(combine());
-        }, Game.MOVE_LENGTH_MS);
+            setTimeout(() => {
+                dispatch(combine());
+                setSliding(false);
+            }, Game.MOVE_LENGTH_MS);
+        }
     });
 
     return (
-        <div className="m-8">
-            <div className="container mx-auto">
-                <h1>2048</h1>
-                <div>
-                    <h2>{score}</h2>
-                    <h2>Game Over: {JSON.stringify(isGameOver)}</h2>
-                </div>
-                <button onClick={() => dispatch(undo())}>Undo</button>
+        <main className="m-4">
+            <div className="container mx-auto min-w-max">
+                <Header />
                 <Grid />
             </div>
-        </div>
+        </main>
     );
 }
 

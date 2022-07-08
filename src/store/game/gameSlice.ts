@@ -268,6 +268,14 @@ export const gameSlice = createSlice({
             }
         },
 
+        newGame: (state) => {
+            state.tiles = initializeTiles();
+            state.score = 0;
+            state.history = [];
+            state.slides = 0;
+            state.combinableTiles = [];
+        },
+
         undo: (state) => {
             if (state.history.length > 0) {
                 const previous = state.history.pop()!;
@@ -278,7 +286,10 @@ export const gameSlice = createSlice({
     }
 });
 
+// used for any derived state
 const selectState = (state: GameState) => state;
+
+// computed state to determine if the game is over
 export const selectIsGameOver = createDraftSafeSelector(
     selectState,
     (state) => {
@@ -323,5 +334,5 @@ export const selectIsGameOver = createDraftSafeSelector(
 );
 
 const { reducer, actions } = gameSlice;
-export const { slide, combine, undo } = actions;
+export const { slide, combine, newGame, undo } = actions;
 export default reducer;

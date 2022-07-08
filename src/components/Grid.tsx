@@ -20,7 +20,7 @@ const Grid = () => {
                     width: Game.GRID_SIZE_PX + 'px',
                     padding: Game.GRID_GAP_PX + 'px'
                 }}
-                className="relative bg-zinc-700"
+                className="relative bg-zinc-700 rounded"
             >
                 <div
                     style={{

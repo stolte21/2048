@@ -29,7 +29,7 @@ const GridTile = ({ variant, coordinate, value }: GridTileProps) => {
 
             if (length >= 4) {
                 return 'text-4xl';
-            } else if (length == 3) {
+            } else if (length === 3) {
                 return 'text-5xl';
             } else {
                 return 'text-6xl';
@@ -66,7 +66,7 @@ const GridTile = ({ variant, coordinate, value }: GridTileProps) => {
         >
             <div
                 className={cn(
-                    'flex justify-center items-center font-bold transition-transform w-full h-full',
+                    'flex justify-center items-center font-bold transition-transform w-full h-full rounded',
                     {
                         'scale-110': expanded,
                         'scale-0': !mounted,
