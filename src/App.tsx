@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Grid from 'components/Grid';
+import useDirectionals from 'hooks/useDirectionals';
+import { useSelector, useDispatch } from 'hooks/redux';
+import { slide, combine, undo, selectIsGameOver } from 'store/game/gameSlice';
+import Game from 'constants/game';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const score = useSelector((state) => state.game.score);
+    const isGameOver = useSelector((state) => selectIsGameOver(state.game));
+    const dispatch = useDispatch();
+
+    // TODO: implement a queue
+    useDirectionals((direction) => {
+        dispatch(slide(direction));
+
+        setTimeout(() => {
+            dispatch(combine());
+        }, Game.MOVE_LENGTH_MS);
+    });
+
+    return (
+        <div className="m-8">
+            <div className="container mx-auto">
+                <h1>2048</h1>
+                <div>
+                    <h2>{score}</h2>
+                    <h2>Game Over: {JSON.stringify(isGameOver)}</h2>
+                </div>
+                <button onClick={() => dispatch(undo())}>Undo</button>
+                <Grid />
+            </div>
+        </div>
+    );
 }
 
 export default App;
