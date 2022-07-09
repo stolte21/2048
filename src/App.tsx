@@ -24,8 +24,8 @@ function App() {
     });
 
     return (
-        <main className="m-4">
-            <div className="container mx-auto min-w-max">
+        <main className="mt-4">
+            <div className="container mx-auto min-w-full">
                 <Header />
                 <Grid />
             </div>
