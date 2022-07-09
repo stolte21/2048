@@ -1,6 +1,7 @@
 {
   "name": "2048",
   "version": "0.1.0",
+  "homepage": "https://stolte21.github.io/2048",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
@@ -24,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +50,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.182",
     "autoprefixer": "^10.4.7",
+    "gh-pages": "^4.0.0",
     "postcss": "^8.4.14",
     "prettier": "2.7.1",
     "tailwindcss": "^3.1.4"
