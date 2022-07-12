@@ -135,9 +135,9 @@ const SlideOptions: SlideOptionsType = {
         })
     },
     up: {
-        rowInitial: Game.GRID_SIZE - 1,
-        rowCondition: (row) => row >= 0,
-        rowStep: (row) => row - 1,
+        rowInitial: 0,
+        rowCondition: (row) => row < Game.GRID_SIZE,
+        rowStep: (row) => row + 1,
         colInitial: 0,
         colCondition: (col) => col < Game.GRID_SIZE,
         colStep: (col) => col + 1,

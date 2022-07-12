@@ -39,10 +39,14 @@ const Header = () => {
                     <Stat label="Best" text={bestScore} />
                 </div>
                 <div className="flex gap-2 mx-1">
-                    <Button onClick={() => dispatch(newGame())}>
+                    <Button
+                        variant="secondary"
+                        onClick={() => dispatch(newGame())}
+                    >
                         New Game
                     </Button>
                     <Button
+                        variant="secondary"
                         disabled={history.length === 0}
                         onClick={() => dispatch(undo())}
                     >

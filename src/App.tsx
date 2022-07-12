@@ -1,14 +1,21 @@
 import { useState } from 'react';
 import Header from 'components/Header';
 import Grid from 'components/Grid';
+import Modal from 'components/Modal';
 import useDirectionals from 'hooks/useDirectionals';
-import { useDispatch } from 'hooks/redux';
-import { slide, combine } from 'store/game/gameSlice';
+import { useDispatch, useSelector } from 'hooks/redux';
+import {
+    slide,
+    combine,
+    newGame,
+    selectIsGameOver
+} from 'store/game/gameSlice';
 import Game from 'constants/game';
 
 function App() {
     const [sliding, setSliding] = useState(false);
-    //const isGameOver = useSelector((state) => selectIsGameOver(state.game));
+    const score = useSelector((state) => state.game.score);
+    const isGameOver = useSelector((state) => selectIsGameOver(state.game));
     const dispatch = useDispatch();
 
     useDirectionals((direction) => {
@@ -29,6 +36,17 @@ function App() {
                 <Header />
                 <Grid />
             </div>
+            <Modal
+                isOpen={isGameOver}
+                text={`Game Over! Your score was ${score}`}
+                actions={[
+                    {
+                        text: 'New Game',
+                        type: 'primary',
+                        onClick: (e) => dispatch(newGame())
+                    }
+                ]}
+            />
         </main>
     );
 }
