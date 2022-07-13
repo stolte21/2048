@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from 'components/Header';
 import Grid from 'components/Grid';
 import Modal from 'components/Modal';
@@ -16,7 +16,18 @@ function App() {
     const [sliding, setSliding] = useState(false);
     const score = useSelector((state) => state.game.score);
     const isGameOver = useSelector((state) => selectIsGameOver(state.game));
+    const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (isGameOver) {
+            setTimeout(() => {
+                setShowModal(true);
+            }, 750);
+        } else {
+            setShowModal(false);
+        }
+    }, [isGameOver]);
 
     useDirectionals((direction) => {
         if (!sliding) {
@@ -37,7 +48,7 @@ function App() {
                 <Grid />
             </div>
             <Modal
-                isOpen={isGameOver}
+                isOpen={showModal}
                 text={`Game Over! Your score was ${score}`}
                 actions={[
                     {

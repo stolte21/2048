@@ -18,7 +18,7 @@ const Modal = (props: Props) => {
     return (
         <div
             className={cn(
-                'h-fit absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-80 bg-zinc-700 shadow-md rounded border-t-2 border-zinc-500 transition-opacity duration-500',
+                'h-fit absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-80 bg-zinc-700 shadow-md rounded border-t-2 border-zinc-500 transition-opacity duration-1000',
                 { 'opacity-100': props.isOpen },
                 { 'invisible opacity-0': !props.isOpen }
             )}
