@@ -33,15 +33,15 @@ const Colors: TileColors = {
     },
     128: {
         text: 'text-white',
-        bg: 'bg-cyan-400'
+        bg: 'bg-amber-500'
     },
     256: {
         text: 'text-white',
-        bg: 'bg-cyan-600'
+        bg: 'bg-amber-700'
     },
     512: {
         text: 'text-white',
-        bg: 'bg-cyan-800'
+        bg: 'bg-amber-800'
     },
     1024: {
         text: 'text-white',
